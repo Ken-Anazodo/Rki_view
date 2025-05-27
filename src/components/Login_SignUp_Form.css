@@ -1,0 +1,45 @@
+/* @layer components {
+	.login-input{
+		@apply w-md h-lg;
+	}	
+  } */
+
+.container{
+	font-size: 13px;
+	font-weight: 500;
+	text-transform: uppercase;
+  }
+
+  .login-input{
+	width: 100%;
+	height: 50px;
+	font-size: 10px;
+	padding-left: 15px;
+	text-transform: capitalize;
+	border-bottom: 1px solid black;
+	color: oklch(55.2% 0.016 285.938);
+  }
+
+  input:focus {
+	outline: none;
+	box-shadow: none;
+  }
+
+  form .submit{
+	width: 100%;
+	height: 50px;
+  }
+
+  /* .log{
+	margin-top: 4px;
+  } */
+
+  .form-txt{
+	color: oklch(55.2% 0.016 285.938);
+  }
+
+  .upload-desc{
+	font-size: 8px;
+	padding-left: 15px;
+	font-weight: 600;
+}
