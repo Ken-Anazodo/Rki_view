@@ -4,6 +4,8 @@ export const adminAuthApi = createApi({
 	reducerPath: "adminAuthApi",
 	baseQuery: fetchBaseQuery({baseUrl: "http://localhost:3000", credentials: "include",}), //credentials for jwt cookies
 	endpoints: (builder) => ({
+		adminDashboard: builder.query({query: () => "admin/dashboard/"}),
+
 		adminSignUp: builder.mutation({
 			query: (userData)=>({
 				url: "admin/admin_signup/",
@@ -30,4 +32,4 @@ export const adminAuthApi = createApi({
 	})
 })
 
-export const { useAdminSignUpMutation, useAdminEmailVerificationMutation, useAdminLoginMutation } = adminAuthApi;
+export const { useAdminDashboardQuery, useAdminSignUpMutation, useAdminEmailVerificationMutation, useAdminLoginMutation } = adminAuthApi;

@@ -104,6 +104,11 @@ const SignUpForm = () => {
 			setErrorMessage(error.data.error)
 			console.error(error.data.error)
 		}
+
+		if (!formInput.firstname || !formInput.password || !formInput.username || !formInput.email || !formInput.contactNo) {
+			setErrorMessage("All input field are required")
+			return;
+		}
 		
 		if (uploading) {
 			setErrorMessage("Please wait for the image to finish uploading.");
@@ -145,7 +150,7 @@ const SignUpForm = () => {
 		navigate("/dashboard/")
 	  }
 	
-	}, [isSuccess])
+	}, [isSuccess, navigate])
 	
 
 
@@ -157,7 +162,7 @@ const SignUpForm = () => {
 			<p className='text-5xl font-medium'>Sign Up</p>
 		</div>
 
-		{errorMessage && <p className='mt-3'>{ <ErrorMessage message={errorMessage} /> }</p>}
+		{errorMessage && <div className='mt-3'>{ <ErrorMessage message={errorMessage} /> }</div>}
 
 		<form onSubmit={handleSubmit} method='POST' className='mt-6'>
 			<div className='flex justify-between gap-4'>
