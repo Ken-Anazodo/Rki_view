@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import RequireNoAuth from './components/auth/RequireNoAuth';
 import { Navigate, Route, Routes} from "react-router-dom";
 import './App.css'
 import Dashboard from './pages/Dashboard';
@@ -11,8 +12,12 @@ function App() {
     <div>
        <Routes>
           <Route path="/" element={<Navigate to="/login"/>} />
-          <Route path="/login/" element={ <Login />} /> 
-          <Route path="/signup/" element={ <SignUp />} /> 
+
+          <Route element={<RequireNoAuth />}>
+            <Route path="/login/" element={ <Login />} /> 
+            <Route path="/signup/" element={ <SignUp />} /> 
+          </Route>
+    
           <Route path="/Dashboard/" element={<Dashboard />} />
       </Routes>
     </div>

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import "./Login_SignUp_Form.css";
-import { useAdminLoginMutation } from '../services/adminAuthApi'
+import { useAdminLoginMutation } from '../services/adminAuthApi';
+import { login } from '../features/auth/authentication';
+import { useDispatch } from 'react-redux';
 import ErrorMessage from './ErrorMessage';
 
 const LoginForm = () => {
@@ -14,7 +16,8 @@ const LoginForm = () => {
 		password: ""
 	})
 	
-
+	const dispatch = useDispatch()
+	
 
 	const handleOnChange = (event) => {
 		const {name, value} = event.currentTarget;
@@ -25,14 +28,12 @@ const LoginForm = () => {
 		}))
 	}
 
-
 	
 	const handleSubmit = async(event) => {
 		event.preventDefault();
 		setErrorMessage(null);
 
 		try{
-
 			await adminLogin(formInput).unwrap();
 
 			setFormInput({
@@ -49,10 +50,12 @@ const LoginForm = () => {
 	useEffect(() => {
 		if (isSuccess){
 			navigate("/dashboard/")
+			dispatch(login())
 		}
 	  
-	}, [isSuccess, navigate])
-	
+	}, [isSuccess, navigate, dispatch])
+
+
 
   return (
 	<div className="container w-120 bg-stone-100 rounded-xl p-12 border border-zinc-900">
@@ -65,7 +68,7 @@ const LoginForm = () => {
 
 		<form onSubmit={handleSubmit} className='mt-9'>
 			<div>
-				<input onChange={handleOnChange} type="text" name="username" id="username" autoComplete="username" className="log login-input onChange={handleOnChange}" placeholder="Username *" value={formInput.username} />
+				<input onChange={handleOnChange} type="text" name="username" id="username" autoComplete="username" className="log login-input" placeholder="Username *" value={formInput.username} />
 			</div>
 
 			<div>
@@ -81,7 +84,7 @@ const LoginForm = () => {
 				<label htmlFor='remember' className="form-check-label">Remember Me</label>
 			</div>
 
-			<button className="submit mt-15 text-center bg-zinc-900 text-stone-100 rounded-4xl uppercase cursor-pointer"  disabled={isLoading} type="submit">{isLoading? "Loading..." : "Login"}</button>
+			<button className={`submit mt-15 text-center bg-zinc-900 text-stone-100 rounded-4xl uppercase cursor-pointer ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}  disabled={isLoading} type="submit">{isLoading? "Loading..." : "Login"}</button>
 		</form>
 
 		<div className='form-txt w-full mt-7 cursor-pointer'>
