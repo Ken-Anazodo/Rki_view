@@ -4,11 +4,11 @@ export const adminAuthApi = createApi({
 	reducerPath: "adminAuthApi",
 	baseQuery: fetchBaseQuery({baseUrl: "http://localhost:3000", credentials: "include",}), //credentials for jwt cookies
 	endpoints: (builder) => ({
-		adminDashboard: builder.query({query: () => "admin/dashboard/"}),
+		adminDashboard: builder.query({query: () => "/api/v1/admin/dashboard/"}),
 
 		adminSignUp: builder.mutation({
 			query: (userData)=>({
-				url: "admin/admin_signup/",
+				url: "/api/v1/admin/admin_signup/",
 				method: "POST",
 				body: userData
 			})
@@ -16,7 +16,7 @@ export const adminAuthApi = createApi({
 
 		adminEmailVerification: builder.mutation({
 			query: (token)=>({
-				url: `/verify_admin_email/${token}/`,
+				url: `/api/v1/verify_admin_email/${token}/`,
 				method: 'POST',
 				body: token
 			})
@@ -24,7 +24,7 @@ export const adminAuthApi = createApi({
 
 		adminLogin: builder.mutation({
 			query: (credentials)=>({
-				url: "admin/admin_login/",
+				url: "/api/v1/admin/admin_login/",
 				method: "POST",
 				body: credentials
 			})

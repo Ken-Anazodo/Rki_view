@@ -13,7 +13,9 @@ const Dashboard = () => {
   
 
   return (
-	<div>Dashboard</div>
+	  <div>
+   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius pariatur, nam nesciunt neque a accusantium magni nobis libero at odio facere dolorem veritatis repudiandae sit, excepturi sapiente aut ullam quo!
+    </div>
   )
 }
 
